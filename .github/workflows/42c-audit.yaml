@@ -48,4 +48,12 @@ jobs:
         with:
           name: 42Crunch_AuditReport_${{ github.run_id }}
           path: ${{ github.workspace }}/reports
-          if-no-files-found: error    
+          if-no-files-found: error
+      - name: fetch-and-do-msdo-test
+        shell: bash
+        run: |
+          curl -L -o ./msdo_linux.zip https://www.nuget.org/api/v2/package/Microsoft.Security.DevOps.Cli.linux-x64/0.211.1
+          unzip ./msdo_linux.zip
+          chmod +x tools/guardian
+          chmod +x tools/Microsoft.Guardian.Cli
+          tools/guardian upload -f 42Crunch_AuditReport_${{ github.run_id }}.SARIF
