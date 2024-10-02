@@ -56,4 +56,5 @@ jobs:
           unzip ./msdo_linux.zip
           chmod +x tools/guardian
           chmod +x tools/Microsoft.Guardian.Cli
+          tools/guardian init --force
           tools/guardian upload -f 42Crunch_AuditReport_${{ github.run_id }}.SARIF
